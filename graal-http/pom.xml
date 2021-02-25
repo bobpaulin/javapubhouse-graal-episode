@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.bobpaulin.graal</groupId>
+  <artifactId>graal-http</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <graalvm.version>20.3.1</graalvm.version>
+  </properties>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-compiler-plugin</artifactId>
+		    <version>3.8.0</version>
+		</plugin>
+		<plugin>
+		    <groupId>org.graalvm.nativeimage</groupId>
+		    <artifactId>native-image-maven-plugin</artifactId>
+		    <version>${graalvm.version}</version>
+		    <executions>
+		        <execution>
+		            <goals>
+		                <goal>native-image</goal>
+		            </goals>
+		            <phase>package</phase>
+		        </execution>
+		    </executions>
+		    <configuration>
+		        <skip>false</skip>
+		        <mainClass>com.bobpaulin.graal.http.HttpMain</mainClass>
+		        <buildArgs>
+		            --no-fallback
+		            --enable-all-security-services
+		        </buildArgs>
+		    </configuration>
+		</plugin>
+  	</plugins>
+  </build>
+  
+  <dependencies>
+  
+    <dependency>
+       <groupId>org.apache.httpcomponents</groupId>
+       <artifactId>httpclient</artifactId>
+       <version>4.5.13</version>
+    </dependency>
+	
+  	<dependency>
+  		<groupId>org.graalvm.sdk</groupId>
+  		<artifactId>graal-sdk</artifactId>
+  		<version>${graalvm.version}</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.graalvm.nativeimage</groupId>
+  		<artifactId>svm</artifactId>
+ 		<version>${graalvm.version}</version>
+ 		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+  
+</project>

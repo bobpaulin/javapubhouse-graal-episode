@@ -1,0 +1,14 @@
+[   
+	{
+		"name": "java.lang.String"
+	}, 
+	{
+		"name": "java.lang.Thread"
+	}, 
+	{
+		"name": "org.apache.commons.logging.LogFactory"
+	}, 
+	{
+		"name": "org.apache.commons.logging.impl.SimpleLog"
+	}
+]
